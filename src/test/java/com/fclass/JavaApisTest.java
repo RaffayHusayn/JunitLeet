@@ -28,4 +28,15 @@ class JavaApisTest {
         assertThrows(Exception.class, ()->javaApis.dayOftheWeekSwitchStatement(8), "anything over 7 is not valid");
     }
 
+
+    @Test
+    void dayOfTheWeekSwitchExpressionTest(){
+        //javaApis class object is created before every test method because of it being defined in @BeforeEach method
+        assertEquals("monday", javaApis.dayOftheWeekSwitchExpression(1));
+        assertEquals("tuesday", javaApis.dayOftheWeekSwitchExpression(2));
+        assertEquals("thursday", javaApis.dayOftheWeekSwitchExpression(4));
+        assertEquals("weekend", javaApis.dayOftheWeekSwitchExpression(6));
+        assertEquals("weekend", javaApis.dayOftheWeekSwitchExpression(7));
+    }
+
 }
