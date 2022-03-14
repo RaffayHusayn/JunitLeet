@@ -23,6 +23,7 @@ class JavaApisTest {
 //        JavaApis javaApis = new JavaApis(); // don't do this
         assertEquals("monday",javaApis.dayOftheWeekSwitchStatement(1), "first date is not monday" );
         assertEquals("weekend",javaApis.dayOftheWeekSwitchStatement(6) , "6th date is not weekend");
+        assertEquals("weekend",javaApis.dayOftheWeekSwitchStatement(7) , "6th date is not weekend");
         assertThrows(Exception.class, ()->javaApis.dayOftheWeekSwitchStatement(0), "0 is not a valid date");
         assertThrows(Exception.class, ()->javaApis.dayOftheWeekSwitchStatement(8), "anything over 7 is not valid");
     }
