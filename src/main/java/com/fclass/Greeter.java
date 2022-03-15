@@ -13,6 +13,6 @@ interface Message{
 }
 class HelloWorldMsg implements Message {
     public String msg(){
-        return "Hello World";
+        return "Hello World using a simple method";
     }
 }
