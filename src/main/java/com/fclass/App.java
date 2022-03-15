@@ -7,7 +7,8 @@ package com.fclass;
 public class App 
 {
     public static void main( String[] args ) throws Exception {
-        ReverseString reverseString = new ReverseString();
-        System.out.println(reverseString.reverse(null));
+        Message helloWorldMsg = new HelloWorldMsg();
+        Greeter greeter = new Greeter();
+        greeter.greet(helloWorldMsg);
     }
 }
