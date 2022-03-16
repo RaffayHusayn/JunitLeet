@@ -20,7 +20,7 @@ class JavaApisTest {
 
     @Test
     void dayOfTheWeekSwitchTest() throws Exception {
-//        JavaApis javaApis = new JavaApis(); // don't do this
+//        JavaApis javaApis = new JavaApis(); // don't do this, this is done with method annotated with @BeforeEach which runs that method before running a test
         assertEquals("monday",javaApis.dayOftheWeekSwitchStatement(1), "first date is not monday" );
         assertEquals("weekend",javaApis.dayOftheWeekSwitchStatement(6) , "6th date is not weekend");
         assertEquals("weekend",javaApis.dayOftheWeekSwitchStatement(7) , "6th date is not weekend");
@@ -31,7 +31,7 @@ class JavaApisTest {
 
     @Test
     void dayOfTheWeekSwitchExpressionTest(){
-        //javaApis class object is created before every test method because of it being defined in @BeforeEach method
+//        JavaApis javaApis = new JavaApis(); // don't do this, this is done with method annotated with @BeforeEach which runs that method before running a test
         assertEquals("monday", javaApis.dayOftheWeekSwitchExpression(1));
         assertEquals("tuesday", javaApis.dayOftheWeekSwitchExpression(2));
         assertEquals("thursday", javaApis.dayOftheWeekSwitchExpression(4));
