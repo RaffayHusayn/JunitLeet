@@ -22,16 +22,23 @@ public class LambdaMain {
             T#3: Print all the student whose last name start wth "C"
          */
 
-        System.out.println("==================Before Sorting by Name==================");
+        System.out.println("==================Before Sorting by Name==================\n");
         studentList.forEach(System.out::println);
-        //Task # 1:
+
+        //Task # 1: Using Lambdas to sort the students by Last names
         Comparator<Student> sortByName = (s1, s2)->s1.getLastName().compareTo(s2.getLastName());
         Collections.sort(studentList, sortByName);
 
 
 
-        System.out.println("==================After Sorting by Name==================");
-        //Task # 2:
+        System.out.println("\n==================After Sorting by Name==================\n");
+        //Task # 2: Just printing all the students, no need to use lambdas here
         studentList.forEach(System.out::println);
+
+        System.out.println("\n=======Students whose last Name start with \"C\"===========\n");
+
+        //Task # 3: Only printing where lastName starts with "C"
+        studentList.stream().filter(s->s.getLastName().startsWith("C")).forEach(System.out::println);
+
     }
 }
