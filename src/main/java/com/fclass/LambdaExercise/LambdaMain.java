@@ -1,7 +1,10 @@
 package com.fclass.LambdaExercise;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LambdaMain {
     public static void main(String[] args){
@@ -19,7 +22,15 @@ public class LambdaMain {
             T#3: Print all the student whose last name start wth "C"
          */
 
+        System.out.println("==================Before Sorting by Name==================");
+        studentList.forEach(System.out::println);
+        //Task # 1:
+        Comparator<Student> sortByName = (s1, s2)->s1.getLastName().compareTo(s2.getLastName());
+        Collections.sort(studentList, sortByName);
 
+
+
+        System.out.println("==================After Sorting by Name==================");
         //Task # 2:
         studentList.forEach(System.out::println);
     }
