@@ -11,6 +11,7 @@ public class Greeter {
 interface Message{
    public String msg();
 }
+
 class HelloWorldMsg implements Message {
     public String msg(){
         return "Hello World using a simple method";
