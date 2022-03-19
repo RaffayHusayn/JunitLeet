@@ -1,4 +1,4 @@
-package com.fclass.LambdaExercise;
+package com.fclass.lambda_exercise;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class LambdaMain {
     public static void main(String[] args){
@@ -57,11 +56,16 @@ public class LambdaMain {
         System.out.println("-----Full Names-----");
         studentList.stream().filter(nameStartC).forEach(printFullStudent);
 
-        System.out.println("\n =====Student whose last Name start with \"C\" (using method references and map() )=========\n");
+        System.out.println("\n =====Student whose last Name start with \"C\" (using method references and Lambdas )=========\n");
         System.out.println("-----First Names-----");
         studentList.stream().filter(nameStartC).map(s->s.getFirstName()).forEach(System.out::println);
         System.out.println("-----Full Names-----");
         studentList.stream().filter(nameStartC).forEach(System.out::println);
 
+        System.out.println("\n =====Student whose last Name start with \"C\" (using only method references )=========\n");
+        System.out.println("-----First Names-----");
+        studentList.stream().filter(nameStartC).map(Student::getFirstName).forEach(System.out::println);
+        System.out.println("-----Full Names-----");
+        studentList.stream().filter(nameStartC).forEach(System.out::println);
     }
 }

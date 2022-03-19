@@ -1,4 +1,4 @@
-package com.fclass.LambdaExercise;
+package com.fclass.lambda_exercise;
 
 public class Student {
     private String firstName;
