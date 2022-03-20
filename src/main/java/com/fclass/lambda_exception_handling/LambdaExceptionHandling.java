@@ -1,15 +1,12 @@
 package com.fclass.lambda_exception_handling;
 
-import jdk.jshell.execution.JdiDefaultExecutionControl;
-
-import java.lang.reflect.Array;
 import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
 
 public class LambdaExceptionHandling {
     public static void main(String[] args){
         int[] numArray = {0,1,2,3,4,5,6};
         int target = 0;
+
         BiConsumer<Integer, Integer> addProcessLambda = (num1, num2 )-> System.out.println(num1+num2);
         BiConsumer<Integer, Integer> subtractProcessLambda = (num1, num2 )-> System.out.println(num1-num2);
         BiConsumer<Integer, Integer> multiplyProcessLambda = (num1, num2 )-> System.out.println(num1*num2);
@@ -21,42 +18,40 @@ public class LambdaExceptionHandling {
         System.out.println("xxxxxxxx Multiply Process xxxxxxxxxxxxxxxx");
         processConsumer(numArray, target, multiplyProcessLambda);
         System.out.println("//////// Divide Process /////////////////");
-        processConsumer(numArray, target, divideProcessLambda);
 
+        /*
+                            EXPLANATION OF THE FLOW IN EXCEPTION HANDLING USING A METHOD
+        ====================================================================================================================================
+        This is how exception is handled:
+        1. We create a lambda that can cause an exception
+        2. We create another lambda which accepts and returns the same Type as the Lambda that can cause exception to wrap the first lambda
+        3. We handle the exception in the WrapperLambda and do the same process as the lambda the causes exception in the try block of the wrapper
 
-        System.out.println("==========================================\n===========================================");
-        System.out.println(" Using Bi Function which take 2 things in and return 1 thing out");
-        System.out.println("==========================================\n===========================================\n");
-
-        BiFunction<Integer, Integer, Integer> addFunction = (num1,num2)->num1+num2;
-        BiFunction<Integer, Integer, Integer> subtractFunction = (num1,num2)->num1-num2;
-        BiFunction<Integer, Integer, Integer> multiplyFunction = (num1,num2)->num1*num2;
-        BiFunction<Integer, Integer, Integer> divideFunction = (num1,num2)->num1/num2;
-
-        System.out.println("++++++++++++Add Function+++++++++++++++");
-        int[] addFunctionArray = processFunction(numArray, target, addFunction);
-        for(int n:addFunctionArray) System.out.println(n);
-        System.out.println("----------Subtract Function--------------");
-        int[] subtractFunctionArray = processFunction(numArray, target, subtractFunction);
-        for(int n:subtractFunctionArray) System.out.println(n);
-        System.out.println("xxxxxxxxxxxx Multiply Function xxxxxxxxxxxx");
-        int[] multiplyFunctionArray = processFunction(numArray, target, multiplyFunction);
-        for(int n:multiplyFunctionArray) System.out.println(n);
-        System.out.println("////////// Divide Function /////////////");
-        int[] divideFunctionArray = processFunction(numArray, target, divideFunction);
-        for(int n:divideFunctionArray) System.out.println(n);
+        When the program runs:
+        1. processConsumer method is called
+        2. We go into the loop
+        3. biConsumer.accept() triggers the exceptionWrapperMethod which checks for exception and calls the biConsumer.accept method
+        in the try block
+        4. Go back to the loop iteration in the processConsumer method
+        5. Repeat until loop is over
+        ====================================================================================================================================
+         */
+        processConsumer(numArray, target, exceptionWrapperMethod(divideProcessLambda));
     }
+
     public static void processConsumer(int[] numArray, int target , BiConsumer<Integer, Integer> biConsumer){
         for(int n: numArray){
-            biConsumer.accept(n, target);
+            biConsumer.accept(n, target); // this calls the wrapperLambda to execute where we are doing the same thing ie biConsumer.accept()
         }
     }
-    public static int[] processFunction(int[] numArray, int target , BiFunction<Integer, Integer, Integer> biFunction){
-        int[] processResultArray = new int[numArray.length];
-        for(int i=0; i < numArray.length; i++){
-            processResultArray[i] =  biFunction.apply(numArray[i], target);
-        }
-        return processResultArray;
 
+    public static BiConsumer<Integer, Integer> exceptionWrapperMethod(BiConsumer<Integer, Integer> biConsumer){
+        return (num1, num2)->{
+            try{
+                biConsumer.accept(num1, num2);
+            }catch(Exception e){
+                System.out.println("exception caught in the wrapper lambda");
+            }
+        };
     }
 }
