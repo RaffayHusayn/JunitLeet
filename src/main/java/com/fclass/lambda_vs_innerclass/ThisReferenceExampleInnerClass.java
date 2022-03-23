@@ -12,8 +12,9 @@ public class ThisReferenceExampleInnerClass {
         System.out.println("can't access the value of 'this' in the static function");
         thisReferenceExampleInnerClass.doSomething(new SomeFunctionalInterface() {
             @Override
-            public void something() {
+            public String something() {
                 System.out.println("Value of this in the Anonymous Inner class : \"" + this + "\" reference the object of the Interface");
+                return null;
             }
         });
 
@@ -21,5 +22,5 @@ public class ThisReferenceExampleInnerClass {
 
 }
 interface SomeFunctionalInterface{
-    public void something();
+    public String something();
 }
